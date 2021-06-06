@@ -40,6 +40,9 @@ public class MechanicsServiceImpl implements IMechanicsService {
 
 	@Override
 	public String updateMechanics(int mechanicsId,Mechanics mechanics) throws MechanicsException {
+		if(mechanicsrepository.existsByMechanicsMobile(mechanics.getMechanicsMobile())) {
+			throw new MechanicsException("Mobile number already exists");
+		}
 		Mechanics dbMechanic=mechanicsrepository.findById(mechanicsId).get();
 		if(dbMechanic!=null) {
 			if(mechanics.getMechanicsAge()<20 || mechanics.getMechanicsAge()>45) {
