@@ -14,4 +14,5 @@ public interface MechanicsRepository extends JpaRepository<Mechanics,Integer> {
 	@Modifying
 	@Query(value = "DELETE from Mechanics where is_deleted = true")
 	void deleteMechanicByIsDelete(boolean isDeleted);
+	boolean existsByMechanicsMobile(String mobile);
 }

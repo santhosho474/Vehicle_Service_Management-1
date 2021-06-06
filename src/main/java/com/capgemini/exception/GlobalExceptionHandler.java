@@ -18,9 +18,6 @@ public class GlobalExceptionHandler {
 		if(errorDetails.getMesssage().contains("constraint [uk_7pqjkt6mwigem3tve6e8j2qlp]")) {
 			errorDetails.setMesssage("user_name already exists");
 		}
-		if(errorDetails.getMesssage().contains("constraint [uk_dqjdp8lb8p218sxmhis5b2ef2];")) {
-			errorDetails.setMesssage("mobile number already exists");
-		}
 		return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
 }
 	@ExceptionHandler(value =  UserDetailsException.class)
