@@ -14,4 +14,5 @@ public interface UserDetailsRepository extends JpaRepository<UserDetails,Integer
 	@Modifying
 	@Query(value = "DELETE from UserDetails where is_deleted = true")
 	void deleteUserDetailsByIsDelete(boolean isDeleted);
+	boolean existsByUserName(String name);
 }

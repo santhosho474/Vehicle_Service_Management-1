@@ -26,7 +26,7 @@ public class VehicleServiceImpl implements IVehicleService {
 	public String createVehicle(Vehicle vehicle) {
 		
 		if(vehicle.getUserdetails()!=null) {
-			UserDetails user=userdetailsrepository.findById(vehicle.getUserdetails().getUser_id()).get();
+			UserDetails user=userdetailsrepository.findById(vehicle.getUserdetails().getUserId()).get();
 			vehicle.setUserdetails(user);
 		}
 		if(vehicle.getVehicletype()!=null) {

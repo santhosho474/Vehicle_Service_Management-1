@@ -25,7 +25,7 @@ public class Enquiry {
 	private String admin_response;
 
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="user_id",referencedColumnName="user_id")
+	@JoinColumn(name="user_id",referencedColumnName="userId")
 	private UserDetails user_details;
 	
 	@Column(nullable = false)

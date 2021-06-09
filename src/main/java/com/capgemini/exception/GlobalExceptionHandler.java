@@ -15,9 +15,6 @@ public class GlobalExceptionHandler {
 		ErrorDetails errorDetails = new ErrorDetails();
 		errorDetails.setMesssage(e.getMessage());
 		errorDetails.setTimestamp(LocalDateTime.now());
-		if(errorDetails.getMesssage().contains("constraint [uk_7pqjkt6mwigem3tve6e8j2qlp]")) {
-			errorDetails.setMesssage("user_name already exists");
-		}
 		return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
 }
 	@ExceptionHandler(value =  UserDetailsException.class)

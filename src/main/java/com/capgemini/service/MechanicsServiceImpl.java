@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.entities.Mechanics;
@@ -40,9 +41,6 @@ public class MechanicsServiceImpl implements IMechanicsService {
 
 	@Override
 	public String updateMechanics(int mechanicsId,Mechanics mechanics) throws MechanicsException {
-		if(mechanicsrepository.existsByMechanicsMobile(mechanics.getMechanicsMobile())) {
-			throw new MechanicsException("Mobile number already exists");
-		}
 		Mechanics dbMechanic=mechanicsrepository.findById(mechanicsId).get();
 		if(dbMechanic!=null) {
 			if(mechanics.getMechanicsAge()<20 || mechanics.getMechanicsAge()>45) {
@@ -79,12 +77,9 @@ public class MechanicsServiceImpl implements IMechanicsService {
 
 	@Override
 	public List<Mechanics> getRequest() throws MechanicsException {
-		List<Mechanics> mechanics=mechanicsrepository.findAll().stream()
+		List<Mechanics> mechanics=mechanicsrepository.findAll(Sort.by(Sort.Direction.DESC, "mechanicsId")).stream()
 				.filter((p1)->p1.isDeleted==false)
 				.collect(Collectors.toList());
-		if(mechanics.isEmpty()) {
-			throw new MechanicsException("Mechanics data is empty");
-		}
 		return mechanics;
 	}
 

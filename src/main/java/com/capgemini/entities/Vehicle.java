@@ -26,7 +26,7 @@ public class Vehicle {
 	private Integer vehicle_reg_no;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="user_id",referencedColumnName="user_id")
+	@JoinColumn(name="user_id",referencedColumnName="userId")
 	private UserDetails userdetails;
 	private String vehicle_color;
 	private String vehicle_man_yr;

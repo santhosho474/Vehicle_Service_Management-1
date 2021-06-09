@@ -13,22 +13,22 @@ import lombok.Data;
 
 @Entity
 @Data
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "user_id", scope = Integer.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "userId", scope = Integer.class)
 public class UserDetails {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int user_id;
+	private int userId;
 	@Column(nullable = false, unique = true)
-	private String user_name;
+	private String userName;
 	@Column(nullable = false)
-	private String user_email;
+	private String userEmail;
 	@Column(nullable = false)
-	private String user_mobile;
+	private String userMobile;
 	@Column(nullable = false)
-	private String user_password;
+	private String userPassword;
 	@Column(nullable = false)
-	private String user_type;
+	private String userType;
 	
 	@Column(nullable = false)
 	public boolean isDeleted = false;

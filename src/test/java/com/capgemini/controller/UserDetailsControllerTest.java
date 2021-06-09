@@ -27,8 +27,8 @@ class UserDetailsControllerTest {
 	@Test
 	void findUserDetailstest() throws Exception {
 		UserDetails ud = new UserDetails();
-		ud.setUser_name("Aneesh");
-		ud.setUser_email("aneesh054@gmail.com");
+		ud.setUserName("Aneesh");
+		ud.setUserEmail("aneesh054@gmail.com");
 
 		Mockito.when(userdetailsservice.findUserDetailsById(Mockito.anyInt())).thenReturn(ud);
 		mockMvc.perform(get("/api/user/1")).andExpect(MockMvcResultMatchers.jsonPath("$.user_name").value("Aneesh"));
@@ -37,8 +37,8 @@ class UserDetailsControllerTest {
 	@Test
 	void createUserDetailsTest() throws Exception {
 		UserDetails ud = new UserDetails();
-		ud.setUser_name("Aneesh");
-		ud.setUser_email("aneesh054@gmail.com");
+		ud.setUserName("Aneesh");
+		ud.setUserEmail("aneesh054@gmail.com");
 
 		Mockito.when(userdetailsservice.createUserDetails(Mockito.any())).thenReturn(ud);
 		mockMvc.perform(post("/api/user/").contentType(MediaType.APPLICATION_JSON)

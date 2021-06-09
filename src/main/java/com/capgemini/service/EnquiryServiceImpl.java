@@ -20,7 +20,7 @@ public class EnquiryServiceImpl implements IEnquiryService {
 	@Override
 	public String createEnquiry(Enquiry enquiry) {
 		if(enquiry.getUser_details()!=null) {
-			UserDetails enq=userdetails_repo.findById(enquiry.getUser_details().getUser_id()).get();
+			UserDetails enq=userdetails_repo.findById(enquiry.getUser_details().getUserId()).get();
 			enquiry.setUser_details(enq);
 		}
 		
