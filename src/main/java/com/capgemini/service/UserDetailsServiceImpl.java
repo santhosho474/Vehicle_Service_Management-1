@@ -88,9 +88,6 @@ public class UserDetailsServiceImpl implements IUserDetailsService {
 		List<UserDetails> userdetails=userdetailrepository.findAll().stream()
 				.filter((p1)->p1.isDeleted==false)
 				.collect(Collectors.toList());
-		if(userdetails.isEmpty()) {
-			throw new UserDetailsException("user details data is empty");
-		}
 		return userdetails;
 	}
 
