@@ -1,5 +1,7 @@
 package com.capgemini.repository;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,4 +17,5 @@ public interface MechanicsRepository extends JpaRepository<Mechanics,Integer> {
 	@Query(value = "DELETE from Mechanics where is_deleted = true")
 	void deleteMechanicByIsDelete(boolean isDeleted);
 	boolean existsByMechanicsMobile(String mobile);
+	List<Mechanics> findAllByIsDeleted(boolean var);
 }

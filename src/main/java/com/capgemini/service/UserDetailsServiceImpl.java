@@ -43,9 +43,6 @@ public class UserDetailsServiceImpl implements IUserDetailsService {
 
 	@Override
 	public String updateUserDetails(int user_id, UserDetails userDetails) throws UserDetailsException {
-		if(userdetailrepository.existsByUserName(userDetails.getUserName())) {
-			throw new UserDetailsException("user_name already exists");
-		}
 		if(!userDetails.getUserName().matches("[a-zA-Z0-9 ]+")) {
 			throw new UserDetailsException("User name is invalid");
 		}
@@ -108,6 +105,18 @@ public class UserDetailsServiceImpl implements IUserDetailsService {
 			userdetailrepository.save(dbUser);
 		}
 		return "User Details Deleted";
+	}
+
+	@Override
+	public UserDetails logIn(String name, String password,String userType) throws UserDetailsException {
+		if(!userdetailrepository.existsByUserName(name)) {
+			throw new UserDetailsException("username does not exists");
+		}
+		UserDetails dbUser=userdetailrepository.findByUserNameAndUserPassword(name, password);
+		if(dbUser.isDeleted==true || !(dbUser.getUserType().equalsIgnoreCase(userType))) {
+			throw new UserDetailsException("username does not exists");
+		}
+		return dbUser;
 	}
 	
 	

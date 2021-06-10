@@ -17,9 +17,6 @@ public class MechanicsServiceImpl implements IMechanicsService {
 	private MechanicsRepository mechanicsrepository;
 	@Override
 	public String createMechanics(Mechanics mechanics) throws MechanicsException {
-		if(mechanicsrepository.existsByMechanicsMobile(mechanics.getMechanicsMobile())) {
-			throw new MechanicsException("Mobile number already exists");
-		}
 		if(mechanics.getMechanicsAge()<20 || mechanics.getMechanicsAge()>45) {
 			throw new MechanicsException("Age is invalid");
 		}
@@ -77,9 +74,7 @@ public class MechanicsServiceImpl implements IMechanicsService {
 
 	@Override
 	public List<Mechanics> getRequest() throws MechanicsException {
-		List<Mechanics> mechanics=mechanicsrepository.findAll(Sort.by(Sort.Direction.DESC, "mechanicsId")).stream()
-				.filter((p1)->p1.isDeleted==false)
-				.collect(Collectors.toList());
+		List<Mechanics> mechanics=mechanicsrepository.findAllByIsDeleted(false);
 		return mechanics;
 	}
 

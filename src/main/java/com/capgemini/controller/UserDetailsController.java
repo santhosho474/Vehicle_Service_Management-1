@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.capgemini.service.UserDetailsServiceImpl;
 
 @RestController
 @RequestMapping("/api/user/")
+@CrossOrigin
 public class UserDetailsController {
 	
 	@Autowired
@@ -52,6 +54,11 @@ public class UserDetailsController {
 	public ResponseEntity<String> deleteUser(@PathVariable int user_id) throws UserDetailsException {
 		String message= userdetailserviceimpl.deleteUserDetails(user_id);
 		return new ResponseEntity<>(message, HttpStatus.OK);
+	}
+	@PostMapping("/login/")
+	public ResponseEntity<UserDetails> login(@RequestBody UserDetails userdetails) throws UserDetailsException {
+		UserDetails user=userdetailserviceimpl.logIn(userdetails.getUserName(),userdetails.getUserPassword(),userdetails.getUserType());
+		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 
 }

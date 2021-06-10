@@ -11,4 +11,5 @@ String updateUserDetails(int user_id,UserDetails userDetails) throws UserDetails
 UserDetails findUserDetailsById(int user_id) throws UserDetailsException;
 List<UserDetails> getRequest() throws UserDetailsException;
 String deleteUserDetails(int user_id) throws UserDetailsException;
+UserDetails logIn(String name,String password,String userType)throws UserDetailsException;
 }
